@@ -6,6 +6,7 @@
         
         private T _anyState;
         
+        
         private T _currentState;
         public T GetCurrentState()
         {

@@ -32,6 +32,7 @@ namespace Mouledoux.Node
 
             for(int i = 0; i < a_layers; i++)
             {
+                if (neighbors == neighborhood.Count) break;
                 neighbors = neighborhood.Count;
                 for(int j = index; j < neighbors; j++)
                 {
@@ -93,8 +94,11 @@ namespace Mouledoux.Node
         // ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
         public int RemoveNeighbor(Node a_oldNeighbor)
         {
-            m_neighbors.Remove(a_oldNeighbor);
-            a_oldNeighbor.RemoveNeighbor(this);
+            if (m_neighbors.Contains(a_oldNeighbor))
+            {
+                m_neighbors.Remove(a_oldNeighbor);
+                a_oldNeighbor.RemoveNeighbor(this);
+            }
 
             return 0;
         }
@@ -163,6 +167,8 @@ namespace Mouledoux.Node
         {
             if(a_confirm)
                 m_information.Clear();
+
+            return 0;
         }
 
         // ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
